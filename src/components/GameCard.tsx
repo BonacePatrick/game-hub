@@ -13,7 +13,7 @@ const GameCard = ({game}:Props) => {
 
   return (
     <>
-    <Card width='20rem' overflow= "hidden">
+    <Card>
         <Image src={ croppedImage(game.background_image)}/>
         <CardBody>
             <Heading fontSize='2xl'>{game.name}</Heading>
