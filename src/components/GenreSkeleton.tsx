@@ -1,14 +1,14 @@
-import { HStack, Skeleton, SkeletonText } from "@chakra-ui/react"
+import { HStack, Skeleton, SkeletonText, VStack } from "@chakra-ui/react"
 
 
 const GenreSkeleton = () => {
   return (
 
     <>
-    <HStack>
+    <VStack>
         <Skeleton boxSize='32px' />
         <SkeletonText/>
-    </HStack>
+    </VStack>
     </>
   )
 }
