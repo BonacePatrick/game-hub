@@ -4,9 +4,10 @@ import getCroppedImage from "./Image-Url";
 
 interface Props {
   selectedGenres: (genre:Genre) => void
+  highlightedGenre: Genre | null
 }
 
-const GameGenreList = ({selectedGenres}:Props) => {
+const GameGenreList = ({selectedGenres,highlightedGenre}:Props) => {
   const { data, isLoading,errors } = useGenre();
   if(errors) return null
   
@@ -25,7 +26,7 @@ const GameGenreList = ({selectedGenres}:Props) => {
                 boxSize={"32px"}
                 borderRadius={6}
               />
-              <Button onClick={() => selectedGenres(genre)} variant='link' fontSize="lg">{genre.name}</Button>
+              <Button fontWeight={genre.id === highlightedGenre?.id ? 'bold': ''} onClick={() => selectedGenres(genre)} variant='link' fontSize="lg">{genre.name}</Button>
             </HStack>
           </ListItem>
         ))}
