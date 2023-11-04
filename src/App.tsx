@@ -14,6 +14,7 @@ export interface GameQuery {
   platform: Platform | null;
   sortOrder: string;
   searchField: string;
+  
 }
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
             <Flex marginBottom={3}>
               <Box
                 marginRight={{
-                  base: "3",
+                  base: "4",
                   lg: "5",
                 }}
               >

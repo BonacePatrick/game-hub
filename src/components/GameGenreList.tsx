@@ -8,7 +8,8 @@ interface Props {
 }
 
 const GameGenreList = ({selectedGenres,highlightedGenre}:Props) => {
-  const { data, isLoading,errors } = useGenre();
+  const { data, isLoading, errors } = useGenre();
+  
   if(errors) return null
   
   return (
