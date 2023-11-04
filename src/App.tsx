@@ -9,13 +9,14 @@ import { Platform } from "./hooks/useGames";
 import GameSort from "./components/GameSort";
 
 export interface GameQuery {
-  genre: Genre | null
-  platform: Platform | null
+  genre: Genre | null;
+  platform: Platform | null;
+  sortOrder: string;
 }
 
 function App() {
-  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery)
-  
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+
   return (
     <>
       <Grid
@@ -24,24 +25,41 @@ function App() {
           lg: `"nav nav" "aside main"`,
         }}
         templateColumns={{
-          base: '1fr',
-          lg: '16rem 1fr'
+          base: "1fr",
+          lg: "16rem 1fr",
         }}
       >
         <GridItem area={`nav`}>
           <Navbar />
         </GridItem>
         <Show above="lg">
-          <GridItem area={"aside"} marginX={6} >
-            <GameGenreList highlightedGenre={gameQuery.genre} selectedGenres={genre => setGameQuery({...gameQuery, genre})}/>
+          <GridItem area={"aside"} marginX={6}>
+            <GameGenreList
+              highlightedGenre={gameQuery.genre}
+              selectedGenres={(genre) => setGameQuery({ ...gameQuery, genre })}
+            />
           </GridItem>
         </Show>
         <GridItem area={"main"}>
-          <HStack spacing={5} paddingLeft={3} marginBottom={3}>
-            <PlatformList selectedPlatform={gameQuery.platform} onSelectedPlatform={(platform) => setGameQuery({...gameQuery, platform})}/>
-            <GameSort/>
+          <HStack spacing={{
+            base: '3',
+            lg: '5'
+
+          }} paddingLeft={3} marginBottom={3}>
+            <PlatformList
+              selectedPlatform={gameQuery.platform}
+              onSelectedPlatform={(platform) =>
+                setGameQuery({ ...gameQuery, platform })
+              }
+            />
+            <GameSort
+              sortTitle={gameQuery.sortOrder}
+              onSelectSortOrder={(sortOrder) =>
+                setGameQuery({ ...gameQuery, sortOrder })
+              }
+            />
           </HStack>
-          <GameGrid gameQuery={gameQuery}/>
+          <GameGrid gameQuery={gameQuery} />
         </GridItem>
       </Grid>
     </>
