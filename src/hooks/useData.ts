@@ -10,7 +10,7 @@ interface FetchData<T> {
 
 const useData = <T>(endpoint:string, requestConfig?:AxiosRequestConfig, deps?: any[]) => {
 
-    const [data, setGenre] = useState<T[]>([])
+    const [data, setData] = useState<T[]>([])
     const [errors, setErrors] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
@@ -19,7 +19,7 @@ const useData = <T>(endpoint:string, requestConfig?:AxiosRequestConfig, deps?: a
         setIsLoading(true)
         apiClient.get<FetchData<T>>(endpoint, {signal:controller.signal, ...requestConfig})
         .then(res => {
-            setGenre(res.data.results)
+            setData(res.data.results)
             setIsLoading(false)
         })
         .catch(err => {
