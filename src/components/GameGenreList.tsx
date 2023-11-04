@@ -1,4 +1,4 @@
-import { Button, HStack, Image, List, ListItem, Spinner} from "@chakra-ui/react";
+import { Button, HStack, Heading, Image, List, ListItem, Spinner} from "@chakra-ui/react";
 import useGenre, { Genre } from "../hooks/useGenre";
 import getCroppedImage from "./Image-Url";
 
@@ -13,6 +13,7 @@ const GameGenreList = ({selectedGenres,highlightedGenre}:Props) => {
   
   return (
     <>
+      <Heading marginBottom={3}>Genres</Heading>
       <List>
 
         {isLoading && <Spinner/>}
@@ -21,12 +22,13 @@ const GameGenreList = ({selectedGenres,highlightedGenre}:Props) => {
             <HStack>
               <Image
                 src={getCroppedImage(genre.image_background)}
-                fit="cover"
-                marginY={1}
+                objectFit={'cover'}
+                marginY={1.5}
                 boxSize={"32px"}
                 borderRadius={6}
+                marginRight={1.5}
               />
-              <Button fontWeight={genre.id === highlightedGenre?.id ? 'bold': ''} onClick={() => selectedGenres(genre)} variant='link' fontSize="lg">{genre.name}</Button>
+              <Button whiteSpace='normal' textAlign='left' fontWeight={genre.id === highlightedGenre?.id ? 'bold': ''} onClick={() => selectedGenres(genre)} variant='link' fontSize="lg">{genre.name}</Button>
             </HStack>
           </ListItem>
         ))}
